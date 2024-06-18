@@ -13,9 +13,10 @@ import "@openzeppelin/contracts/finance/VestingWallet.sol";
  */
 
 contract SouthEastDevFundLock is VestingWallet {
+        uint64 public constant VESTING_START = 1717023600; //Thursday May 30 2024 00:00:00 GMT+0100 (West Africa Standard Time) BIAFRA DAY
+        uint64 public constant VESTING_DURATION = 315360000; // 10 years in seconds (315360000)
+        
     constructor(
-        address beneficiaryAddress,
-        uint64 startTimestamp,
-        uint64 durationSeconds
-    ) VestingWallet(beneficiaryAddress, startTimestamp, durationSeconds) {}
+        address beneficiaryAddress //SEDF MAIN DONATION WALLET
+    ) VestingWallet(beneficiaryAddress, VESTING_START, VESTING_DURATION) {}
 }
