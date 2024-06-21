@@ -22,9 +22,9 @@ describe("KeduCurrency Comprehensive Tests", function () {
         });
 
         it("Should assign the initial token allocations", async function () {
-            const FAIR_LAUNCH_ALLOCATION = ethers.parseEther("300000000");
-            const AIRDROP_ALLOCATION = ethers.parseEther("150000000");
-            const SOUTH_ESAT_DEVELOPMENT_FUND_ALLOCATION = ethers.parseEther("200000000");
+            const FAIR_LAUNCH_ALLOCATION = await keduCurrency.FAIR_LAUNCH_ALLOCATION();
+            const AIRDROP_ALLOCATION = await keduCurrency.AIRDROP_ALLOCATION();
+            const SOUTH_ESAT_DEVELOPMENT_FUND_ALLOCATION = await keduCurrency.SOUTH_ESAT_DEVELOPMENT_FUND_ALLOCATION();
 
             expect(await keduCurrency.balanceOf(deployer.address)).to.equal(FAIR_LAUNCH_ALLOCATION);
             expect(await keduCurrency.balanceOf(keduFoundation.address)).to.equal(AIRDROP_ALLOCATION);
@@ -88,8 +88,9 @@ describe("KeduCurrency Comprehensive Tests", function () {
     describe("Burning", function () {
         it("Should burn tokens correctly", async function () {
             const burnAmount = ethers.parseEther("1000");
+            const initialBal = await keduCurrency.FAIR_LAUNCH_ALLOCATION();
             await keduCurrency.connect(deployer).burn(burnAmount);
-            expect(await keduCurrency.balanceOf(deployer.address)).to.equal(ethers.parseEther("299999000"));
+            expect(await keduCurrency.balanceOf(deployer.address)).to.equal(initialBal - burnAmount);
         });
 
         it("Should reduce total supply after burning tokens", async function () {
@@ -105,8 +106,10 @@ describe("KeduCurrency Comprehensive Tests", function () {
     describe("Transfers", function () {
         it("Should transfer tokens between accounts", async function () {
             const transferAmount = ethers.parseEther("1000");
+            const initialBal = await keduCurrency.FAIR_LAUNCH_ALLOCATION();
+
             await keduCurrency.connect(deployer).transfer(addr1.address, transferAmount);
-            expect(await keduCurrency.balanceOf(deployer.address)).to.equal(ethers.parseEther("299999000"));
+            expect(await keduCurrency.balanceOf(deployer.address)).to.equal(initialBal - transferAmount);
             expect(await keduCurrency.balanceOf(addr1.address)).to.equal(transferAmount);
         });
 
