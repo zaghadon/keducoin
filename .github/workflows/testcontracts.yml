@@ -25,6 +25,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Setup environment
+        run: |
+          if [ ! -f .env ]; then
+            cp .env.sample .env
+          fi
+
       - name: Install dependencies
         run: npm ci  # Use npm ci for faster, reproducible builds
 
