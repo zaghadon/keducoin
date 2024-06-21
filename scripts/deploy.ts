@@ -6,7 +6,7 @@ async function main() {
   const requiredAddresses = [
     'KEDU_FOUNDATION_ADDRESS',
     'SEDF_VESTING_WALLET',
-    'MINTER_ADDRESS',
+    'KEDU_APP_ADDRESS',
   ];
   
   requiredAddresses.forEach(addressVar => {
@@ -16,10 +16,10 @@ async function main() {
   });
 
   const kedufoundation = process.env.KEDU_FOUNDATION_ADDRESS as string;
-  const minter = process.env.MINTER_ADDRESS as string;
+  const keduapp = process.env.KEDU_APP_ADDRESS as string;
   const southeastdevfundlock = process.env.SEDF_VESTING_WALLET as string;
 
-  const instance = await ContractFactory.deploy(kedufoundation, southeastdevfundlock, minter);
+  const instance = await ContractFactory.deploy(kedufoundation, southeastdevfundlock, keduapp);
   await instance.waitForDeployment();
 
   console.log(`Contract deployed to ${await instance.getAddress()}`);
