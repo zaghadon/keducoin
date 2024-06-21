@@ -3,24 +3,30 @@ name: Smart Contracts Tests
 on:
   push:
     branches:
-      - "*"
+      - "*"  # Trigger on push to any branch
 
 jobs:
   test:
     name: Run Smart Contract Tests
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, current]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-            node-version: 'lts'  # Use the latest LTS (Long Term Support) version of Node.js
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci  # Use npm ci for faster, reproducible builds
 
       - name: Run npm test script
         run: npm test
