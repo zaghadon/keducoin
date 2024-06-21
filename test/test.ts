@@ -1,9 +1,9 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("KeduCoin Tests", function () {
+describe("KeduCurrency Tests", function () {
   it("Test Contract Creation is Successful", async function () {
-    const ContractFactory = await ethers.getContractFactory("KeduCoin");
+    const ContractFactory = await ethers.getContractFactory("KeduCurrency");
 
     const defaultAdmin = (await ethers.getSigners())[0].address;
     const minter = (await ethers.getSigners())[1].address;
@@ -12,12 +12,12 @@ describe("KeduCoin Tests", function () {
     const instance = await ContractFactory.deploy(defaultAdmin, southeastdevfundlock, minter);
     await instance.waitForDeployment();
 
-    expect(await instance.name()).to.equal("Kedu Coin");
+    expect(await instance.name()).to.equal("KEDU CURRENCY");
   });
 
   it("Deployer can renounce DEFAULT_ADMIN_ROLE", async function () {
     const [deployer, defaultAdmin, minter, southeastdevfundlock] = await ethers.getSigners();
-    const ContractFactory = await ethers.getContractFactory("KeduCoin", {signer: deployer});
+    const ContractFactory = await ethers.getContractFactory("KeduCurrency", {signer: deployer});
     
     const instance = await ContractFactory.deploy(defaultAdmin.address, southeastdevfundlock.address, minter.address);
     await instance.waitForDeployment();
@@ -36,7 +36,7 @@ describe("KeduCoin Tests", function () {
 
   it("Ensure Kedu Foundation provided as constructor prop has DEFAULT_ADMIN_ROLE", async function () {
     const [defaultAdmin, minter, southeastdevfundlock] = await ethers.getSigners();
-    const ContractFactory = await ethers.getContractFactory("KeduCoin");
+    const ContractFactory = await ethers.getContractFactory("KeduCurrency");
     
     const instance = await ContractFactory.deploy(defaultAdmin.address, southeastdevfundlock.address, minter.address);
     await instance.waitForDeployment();
