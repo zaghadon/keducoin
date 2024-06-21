@@ -9,9 +9,9 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 /// @custom:security-contact security@voiceoftheeast.com
 /**
  * @author  Kedu Blockchain Dev Lab.
- * @title   Kedu Coin Airdrop Distributor Contract.
+ * @title   KEDU CURRENCY Airdrop Distributor Contract.
  * @dev     Report Any Vulnerabilities to security@voiceoftheeast.com.
- * @notice  The Kedu Coin Airdrop Distributor Contract for the KEDU Ecosystem.
+ * @notice  The KEDU CURRENCY Airdrop Distributor Contract for the KEDU Ecosystem.
  */
 
 contract KeduAirdropDistributor is Ownable {
