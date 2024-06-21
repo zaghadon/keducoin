@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const ContractFactory = await ethers.getContractFactory("KeduCoin");
+  const ContractFactory = await ethers.getContractFactory("KeduCurrency");
 
   const requiredAddresses = [
     'KEDU_FOUNDATION_ADDRESS',

@@ -18,7 +18,7 @@ async function main() {
   const keducoinAddress = process.env.KEDU_COIN_CA as string;
 
   // Get the contract factory
-  const KeduToken = await ethers.getContractFactory("KeduCoin");
+  const KeduToken = await ethers.getContractFactory("KeduCurrency");
 
   // Attach the contract address to the contract factory
   const keduToken = KeduToken.attach(keducoinAddress);
