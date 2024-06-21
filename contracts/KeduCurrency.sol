@@ -24,11 +24,11 @@ contract KeduCurrency is
 {
     bytes32 public constant SYSTEM_ROLE = keccak256("SYSTEM_ROLE");
 
-    //uint256 public constant TOTAL_SUPPLY = 1000000000 * 10**18; // 1 Billion KEDU
+    uint256 public constant TOTAL_SUPPLY = 1000000000 * 10**18; // 1 Billion KEDU
 
-    uint256 public constant AIRDROP_ALLOCATION = 150000000 * 10 ** 18; // 15% of total supply
-    uint256 public constant FAIR_LAUNCH_ALLOCATION = 300000000 * 10 ** 18; // 30% of total supply
-    uint256 public constant SOUTH_ESAT_DEVELOPMENT_FUND_ALLOCATION = 200000000 * 10 ** 18; // 20% of total supply vested over 10 years
+    uint256 public constant AIRDROP_ALLOCATION = TOTAL_SUPPLY * 15 / 100; // 15% of total supply
+    uint256 public constant FAIR_LAUNCH_ALLOCATION = TOTAL_SUPPLY * 65 / 100; // 30% of total supply
+    uint256 public constant SOUTH_ESAT_DEVELOPMENT_FUND_ALLOCATION = TOTAL_SUPPLY * 20 / 100; // 20% of total supply vested over 10 years
 
     event KEDUConvertedToKeduPoints(address indexed account, uint256 amount);
     event KeduPointsConvertedToKEDU(address indexed account, uint256 amount);
